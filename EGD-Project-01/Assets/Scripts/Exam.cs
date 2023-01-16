@@ -11,7 +11,7 @@ public class Exam : MonoBehaviour
 
     public float grade { get; private set; } = 0.0f;
 
-    private (char, float)[] gradingSystem = new (char, float)[]
+    private (char, float)[] gradingSystem = new (char, float)[]     // Letter Grade and their minimum point value
     {
         ('A', 0.9f),
         ('B', 0.8f),
