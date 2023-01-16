@@ -279,6 +279,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 590801425}
     m_Modifications:
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518233101993262690, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447883235338592732, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6338861835756702493, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
       propertyPath: m_Name
       value: Choose all the aboce that fits
@@ -506,6 +518,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 590801425}
     m_Modifications:
+    - target: {fileID: 1312078873723022397, guid: 03bd852afb8ee4a42ba3889b1a6d4c65, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4378581239260594962, guid: 03bd852afb8ee4a42ba3889b1a6d4c65, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -843,9 +859,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2019645017156302364, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082396853255676932, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7182943506005317457, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
       propertyPath: m_Name
       value: Multiple Choice Question
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007337435599523033, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
@@ -861,6 +889,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1975245391}
     m_Modifications:
+    - target: {fileID: 1312078873723022397, guid: 03bd852afb8ee4a42ba3889b1a6d4c65, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4378581239260594962, guid: 03bd852afb8ee4a42ba3889b1a6d4c65, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -928,6 +960,38 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1975245391}
     m_Modifications:
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5331362435601607056}
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1129226751611133638, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518233101993262690, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447883235338592732, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6338861835756702493, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
       propertyPath: m_Name
       value: Choose all the aboce that fits
@@ -978,6 +1042,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+--- !u!1 &5331362435601607056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1262952880584854599, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
+  m_PrefabInstance: {fileID: 5331362435601607055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5331362435601607057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5331362435601607056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0156c3fd9397bd49bb2b2be66b95383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questionCount: 5
+  capQuestionCount: 0
 --- !u!1001 &6716271143011515261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1029,9 +1112,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2019645017156302364, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6082396853255676932, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7182943506005317457, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
       propertyPath: m_Name
       value: Multiple Choice Question
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007337435599523033, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
+      propertyPath: m_IsOn
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
