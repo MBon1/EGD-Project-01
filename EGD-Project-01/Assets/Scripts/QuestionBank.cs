@@ -14,7 +14,14 @@ public class QuestionBank
             ("Copper Phosphate", false),
         }),
 
-        new Question("True or False: The scientific name for the \"comb jelly\" Phylum is \"Cnidaria\". ", false)
+        new Question("True or False: The scientific name for the \"comb jelly\" Phylum is \"Cnidaria\". ", false),
+
+        new Question(QType.MultipleSelect, "Which of these are not examples of lobe-finned fish? ", new (string, bool)[] {
+            ("Coelacanth", false),
+            ("Sturgeon", true),
+            ("Lungfish", false),
+            ("Carp", true),
+        })
     };
 
     public Question[] Questions { get { return questions; } }
