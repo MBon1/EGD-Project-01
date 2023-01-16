@@ -22,14 +22,7 @@ public class Exam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Display Questions and Answers
         GenerateExam();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /* Randomizes the order of exam questions. 
