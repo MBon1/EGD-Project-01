@@ -179,9 +179,21 @@ public class Exam : MonoBehaviour
      */
     public char GetLetterGrade()
     {
-        for(int i = 0; i < gradingSystem.Length; i++)
+        return GetLetterGrade(grade);
+    }
+
+    /* Returns the given float as a letter grade.
+     * 
+     *    Takes: float
+     * Modifies: NONE
+     *  Returns: char
+     *  Expects: NONE
+     */
+    public char GetLetterGrade(float _grade)
+    {
+        for (int i = 0; i < gradingSystem.Length; i++)
         {
-            if (grade >= gradingSystem[i].Item2)
+            if (_grade >= gradingSystem[i].Item2)
             {
                 return gradingSystem[i].Item1;
             }
