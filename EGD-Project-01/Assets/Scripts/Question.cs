@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -19,6 +20,8 @@ public class Question
     public (string, bool)[] answers { get; private set; } = { };
 
     static Rand rnd = new Rand();
+
+    public QType QuestionType { get { return questionType; } }
 
     /* Create Question object. 
      * If questions have incorrect data, prints an error.
@@ -59,6 +62,23 @@ public class Question
         };
 
         ValidateQuestion();
+    }
+
+    /* Create a copy of a Question object
+     * 
+     *    Takes: string, bool
+     * Modifies: questionType, 
+     *           questions
+     *           answers
+     *  Returns: new Question object
+     *  Expects: Source Question must be valid
+     */
+    public Question(Question _question)
+    {
+        questionType = _question.questionType;
+        question = _question.question;
+        answers = new (string, bool)[_question.answers.Length];
+        Array.Copy(_question.answers, answers, _question.answers.Length);
     }
 
     /* Validates if Question is properly formatted.
