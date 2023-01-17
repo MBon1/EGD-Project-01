@@ -977,6 +977,10 @@ PrefabInstance:
       value: True or False Question
       objectReference: {fileID: 0}
     - target: {fileID: 8658328951215889642, guid: 03bd852afb8ee4a42ba3889b1a6d4c65, type: 3}
+      propertyPath: m_IsOn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8658328951215889642, guid: 03bd852afb8ee4a42ba3889b1a6d4c65, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1117,11 +1121,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8899048273068066791, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8899048273068066791, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 143.76999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8899048273068066791, guid: 66e880213f76a14449887a46bf32d1a6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1198,7 +1202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1354971514231626529, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.630005
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1354971514231626529, guid: 2fb34e75c70fe5a4cb17bfac752649c9, type: 3}
       propertyPath: m_LocalPosition.z
