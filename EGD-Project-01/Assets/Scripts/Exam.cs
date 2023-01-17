@@ -6,7 +6,8 @@ public class Exam : MonoBehaviour
 {
     private static QuestionBank questionBank = new QuestionBank();
     public (Question, int[])[] examQuestions { get; private set; } = { };
-    static bool examGenerated = false;
+    public static bool examGenerated = false;                                  // Change this value on start scene
+    static bool wasCaughtCheating = false;
 
     public GameObject cheatSheetCanvas { get; private set; } = null;
 
@@ -22,8 +23,8 @@ public class Exam : MonoBehaviour
 
     private static (char, float)[] gradingSystem = new (char, float)[]     // Letter Grade and their minimum point value
     {
-        ('A', 0.9f),
-        ('B', 0.8f),
+        ('A', 0.8f),
+        ('B', 0.5f),
         ('F', 0.0f)        
     };
 
@@ -31,10 +32,7 @@ public class Exam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!examGenerated)
-        {
-            GenerateExam();
-        }
+        GenerateExam();
     }
 
     /* Randomizes the order of exam questions. 
@@ -55,6 +53,11 @@ public class Exam : MonoBehaviour
      */
     private void GenerateExam()
     {
+        if (examGenerated)
+        {
+            return;
+        }
+
         if (capQuestionCount)
         {
             int questionBankSize = questionBank.Questions.Length;
@@ -135,6 +138,8 @@ public class Exam : MonoBehaviour
         }
 
         examGenerated = true;
+
+        wasCaughtCheating = false;
 
         // Make Cheat Sheet
         GenerateCheatSheet();
@@ -227,6 +232,20 @@ public class Exam : MonoBehaviour
         Debug.Log("Answered Question " + _questionNumber + " with " + _answer);
     }
 
+    /* Player was caught cheating on exam.
+     * Will result in automatic 0 on grading.
+     * 
+     *    Takes: NONE
+     * Modifies: wasCaughtCheating
+     *  Returns: NONE
+     *  Expects: NONE
+     */
+    public void GetCaughtCheating()
+    {
+        wasCaughtCheating = true;
+        // Change scene?
+    }
+
     /* Grades the exam.
      * 
      *    Takes: NONE
@@ -237,6 +256,11 @@ public class Exam : MonoBehaviour
     public float Grade()
     {
         grade = 0.0f;
+
+        if (wasCaughtCheating)
+        {
+            return grade;
+        }
 
         for(int i = 0; i < examQuestions.Length; i++)
         {
