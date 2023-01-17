@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(StartGame))]
 public class Timer : MonoBehaviour
 {
     public float examTime = 10;
@@ -33,6 +34,7 @@ public class Timer : MonoBehaviour
                 examTime = 0;
                 timerRunning = false;
                 timerUpdate(examTime);
+                ChangeScene();
             }
         }
     }
@@ -42,5 +44,10 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
         float milliseconds = (timeToDisplay % 1) * 1000;
         timerDisplay.text = string.Format("{0:00}:{1:000}", seconds, milliseconds);
+    }
+
+    void ChangeScene()
+    {
+        this.gameObject.GetComponent<StartGame>().LoadLevel();
     }
 }
