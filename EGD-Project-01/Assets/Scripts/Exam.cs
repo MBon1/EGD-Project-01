@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Exam : MonoBehaviour
@@ -8,6 +9,10 @@ public class Exam : MonoBehaviour
 
     [SerializeField] uint questionCount = 5;
     [SerializeField] bool capQuestionCount = false;
+
+    [SerializeField] GameObject multipleChoicePrefab = null;
+    [SerializeField] GameObject multipleSelectPrefab = null;
+    [SerializeField] GameObject trueFalsePrefab = null;
 
     public float grade { get; private set; } = 0.0f;
 
@@ -59,12 +64,15 @@ public class Exam : MonoBehaviour
         {
             examQuestions = new (Question, int[])[questionCount];
         }
-        
+
+        // Destroy all pre-existing children
+        foreach (Transform child in this.gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
         int displayedQuestionCount = 0;
-
         int numQuestionsInBank = questionBank.Questions.Length;
-
         while (displayedQuestionCount < examQuestions.Length)
         {
             if (displayedQuestionCount % numQuestionsInBank == 0)
@@ -77,18 +85,50 @@ public class Exam : MonoBehaviour
                 question.QuestionType == QType.MultipleSelect ? new int[question.answers.Length] : new int[] { -1 });
 
             Question lastExamQuestion = examQuestions[displayedQuestionCount].Item1;
+            QType questionType = lastExamQuestion.QuestionType;
+
             Debug.Log("Q: " + lastExamQuestion.question);
+
+            GameObject qPrefab = null;
+
+            if (questionType == QType.MultipleChoice)
+            {
+                qPrefab = Object.Instantiate(multipleChoicePrefab, this.gameObject.transform);
+            }
+            else if (questionType == QType.MultipleSelect)
+            {
+                qPrefab = Object.Instantiate(multipleSelectPrefab, this.gameObject.transform);
+            }
+            else
+            {
+                qPrefab = Object.Instantiate(trueFalsePrefab, this.gameObject.transform);
+            }
+
+            // Set Question Variables
+            qPrefab.GetComponentInChildren<Text>().text = question.question;
+            QuestionUI qUI = qPrefab.GetComponent<QuestionUI>();
+            qUI.exam = this;
+            qUI.questionID = displayedQuestionCount;
+
+            Text[] qanswers = qPrefab.transform.Find("Answers").transform.GetComponentsInChildren<Text>();
+
             // Create Question prefab
             for (int i = 0; i < lastExamQuestion.answers.Length; i++)
             {
                 (string, bool) answer = lastExamQuestion.answers[i];
-                char option = (char)('a' + i);
-                Debug.Log("\t" + option + ". " + answer.Item1 + "   (" + (answer.Item2 ? "O" : "X") + ")");
+                char option = (char)('A' + i);
+                string aText = option + ". " + answer.Item1;
+                Debug.Log("\t" + aText + "   (" + (answer.Item2 ? "O" : "X") + ")");
+
                 // Update the answer for the question prefab
+                //qanswers[i].GetComponentInChildren<Text>().text = aText;
+                qanswers[i].text = aText;
             }
 
             displayedQuestionCount++;
         }
+
+        // Make Cheat Sheet
     }
 
     /* Given a question number, sets answer to the given answer number.

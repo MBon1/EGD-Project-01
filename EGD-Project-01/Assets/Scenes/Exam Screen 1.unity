@@ -509,6 +509,70 @@ PrefabInstance:
       propertyPath: m_Name
       value: Question
       objectReference: {fileID: 0}
+    - target: {fileID: 2511286066924333880, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511286066924333880, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511286066924333880, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2511286066924333880, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691994629124531472, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691994629124531472, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691994629124531472, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691994629124531472, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804551219338959581, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804551219338959581, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804551219338959581, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5804551219338959581, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841916526350748126, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841916526350748126, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841916526350748126, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841916526350748126, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9197757069845131850, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
       propertyPath: exam
       value: 
@@ -1490,6 +1554,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionCount: 6
   capQuestionCount: 0
+  multipleChoicePrefab: {fileID: 917800432745940222, guid: e7393c5a723b1be47ab6f2e63927ad0d, type: 3}
+  multipleSelectPrefab: {fileID: 5860532776411050677, guid: e0eedee9935c4cd4e94f9172a80b88da, type: 3}
+  trueFalsePrefab: {fileID: 5147896722947928175, guid: ddc5990456e65d247a49d9100e90d44e, type: 3}
 --- !u!1001 &2015150436
 PrefabInstance:
   m_ObjectHideFlags: 0

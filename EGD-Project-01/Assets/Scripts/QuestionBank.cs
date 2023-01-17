@@ -44,11 +44,11 @@ public class QuestionBank
         }),
 
         // True-False
-        new Question("True or False: The scientific name for the \"comb jelly\" phylum is \"Cnidaria\".", false),
+        new Question("True/False: The scientific name for the \"comb jelly\" phylum is \"Cnidaria\".", false),
 
-        new Question("True or False: Ammonites were alive during the Devonian Period (420-359 million years ago).", true),
+        new Question("True/False: Ammonites were alive during the Devonian Period (420-359 MYA).", true),
 
-        new Question("True or False: Eurypterids are commonly thought to be the ancestors to horseshoe crabs.", false),
+        new Question("True/False: Eurypterids are commonly thought to be the ancestors to horseshoe crabs.", false),
 
         // Multiple Select
         new Question(QType.MultipleSelect, "Which of these are not examples of lobe-finned fish?", new (string, bool)[] {
