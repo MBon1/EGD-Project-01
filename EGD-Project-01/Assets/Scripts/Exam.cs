@@ -11,6 +11,7 @@ public class Exam : MonoBehaviour
     static bool wasCaughtCheating = false;
 
     public GameObject cheatSheetCanvas { get; private set; } = null;
+    public GameObject cheatSheet { get; private set; } = null;
 
     [SerializeField] uint questionCount = 5;
     [SerializeField] bool capQuestionCount = false;
@@ -18,6 +19,8 @@ public class Exam : MonoBehaviour
     [SerializeField] GameObject multipleChoicePrefab = null;
     [SerializeField] GameObject multipleSelectPrefab = null;
     [SerializeField] GameObject trueFalsePrefab = null;
+
+    [SerializeField] Sprite cheatSheetBackground = null;
 
 
 
@@ -160,7 +163,8 @@ public class Exam : MonoBehaviour
         cheatSheetCanvas = Object.Instantiate(this.gameObject.transform.parent).gameObject;
 
         // Get Exam Object (cheat sheet)
-        GameObject cheatSheet = cheatSheetCanvas.transform.Find("Exam").gameObject;
+        cheatSheet = cheatSheetCanvas.transform.Find("Exam").gameObject;
+        cheatSheet.GetComponent<Image>().sprite = cheatSheetBackground;
 
         QuestionUI[] questions = cheatSheet.transform.GetComponentsInChildren<QuestionUI>();
         for (int i = 0; i < examQuestions.Length; i++)
