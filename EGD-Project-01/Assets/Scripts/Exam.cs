@@ -189,11 +189,12 @@ public class Exam : MonoBehaviour
 
         // Set the position of the cheat sheet
         Vector3 pos = this.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
-        cheatSheet.gameObject.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x - 15, pos.y - 25, pos.z);
+        cheatSheet.gameObject.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x - 10, pos.y - 10, pos.z);
 
         // Change interactability and layer of canvas
         cheatSheetCanvas.GetComponent<CanvasGroup>().interactable = false;
-        cheatSheetCanvas.GetComponent<Canvas>().sortingLayerName = "Hidden";
+        //cheatSheetCanvas.GetComponent<Canvas>().sortingLayerName = "Hidden";
+        cheatSheetCanvas.GetComponent<Canvas>().sortingOrder = 0;
     }
 
     /* Given a question number, sets answer to the given answer number.

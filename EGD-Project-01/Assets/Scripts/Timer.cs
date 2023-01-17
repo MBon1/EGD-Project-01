@@ -16,7 +16,7 @@ public class Timer : MonoBehaviour
     {
         timerRunning = true;
         Debug.Log("Start the clock!");
-        timerDisplay.GetComponent<Text>().color = Color.white;
+        //timerDisplay.GetComponent<Text>().color = Color.white;
     }
 
     // Update is called once per frame
