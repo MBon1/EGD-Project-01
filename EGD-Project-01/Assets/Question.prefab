@@ -163,6 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 917800432745940221}
+  - component: {fileID: 9197757069845131850}
   m_Layer: 5
   m_Name: Question
   m_TagString: Untagged
@@ -191,6 +192,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &9197757069845131850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917800432745940222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a3eb93d454e8746acc0b0cefab5357, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  exam: {fileID: 0}
+  questionID: -1
 --- !u!1 &917800433365946247
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +449,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2691994629124531472}
   - component: {fileID: 423707881796026146}
+  - component: {fileID: 6218326153395071021}
   m_Layer: 5
   m_Name: Toggle
   m_TagString: Untagged
@@ -509,19 +525,33 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917800432745940222}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 6218326153395071021}
+        m_TargetAssemblyTypeName: AnswerUI, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &6218326153395071021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3384612523984622742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed5c003e5e83e14f9af4607279d5d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: {fileID: 9197757069845131850}
+  answerID: 0
 --- !u!1 &3470399063367448761
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +637,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2511286066924333880}
   - component: {fileID: 5588804228656344378}
+  - component: {fileID: 9182475641320747326}
   m_Layer: 5
   m_Name: Toggle (1)
   m_TagString: Untagged
@@ -682,19 +713,33 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917800432745940222}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 9182475641320747326}
+        m_TargetAssemblyTypeName: AnswerUI, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &9182475641320747326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3557623983993373691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed5c003e5e83e14f9af4607279d5d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: {fileID: 9197757069845131850}
+  answerID: 1
 --- !u!1 &4721021360065568520
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,6 +826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5804551219338959581}
   - component: {fileID: 3208865347054786559}
+  - component: {fileID: 7939561454424822779}
   m_Layer: 5
   m_Name: Toggle (2)
   m_TagString: Untagged
@@ -856,19 +902,33 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917800432745940222}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 7939561454424822779}
+        m_TargetAssemblyTypeName: AnswerUI, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &7939561454424822779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978363853644048496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed5c003e5e83e14f9af4607279d5d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: {fileID: 9197757069845131850}
+  answerID: 2
 --- !u!1 &5317328952753896713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1097,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7841916526350748126}
   - component: {fileID: 6325372828414398506}
+  - component: {fileID: 5306364452291589649}
   m_Layer: 5
   m_Name: Toggle (3)
   m_TagString: Untagged
@@ -1112,19 +1173,33 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 917800432745940222}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 5306364452291589649}
+        m_TargetAssemblyTypeName: AnswerUI, Assembly-CSharp
+        m_MethodName: Answer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!114 &5306364452291589649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6549209802463380579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fed5c003e5e83e14f9af4607279d5d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  question: {fileID: 9197757069845131850}
+  answerID: 3
 --- !u!1 &7263673253189032226
 GameObject:
   m_ObjectHideFlags: 0
