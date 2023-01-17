@@ -31,12 +31,12 @@ public class AnswerUI : MonoBehaviour
             return;
         }
 
-        Exam exam = question.exam;
+        /*Exam exam = question.exam;
         if (question.exam == null)
         {
             Debug.LogError("ERROR: Exam null");
             return;
-        }
+        }*/
 
         int questionID = question.questionID;
         if (questionID < 0)
@@ -51,11 +51,13 @@ public class AnswerUI : MonoBehaviour
             return;
         }
 
-        QType questionType = exam.examQuestions[questionID].Item1.QuestionType;
+        Exam.AnswerQuestion(question.questionID, answerID);
+        /*QType questionType = Exam.examQuestions[questionID].Item1.QuestionType;
         if (((questionType == QType.MultipleChoice || questionType == QType.TrueFalse) && toggle.isOn == true) ||
             questionType == QType.MultipleSelect)
         {
-            question.exam.AnswerQuestion(question.questionID, answerID);
-        }
+            //question.exam.AnswerQuestion(question.questionID, answerID);
+            Exam.AnswerQuestion(question.questionID, answerID);
+        }*/
     }
 }

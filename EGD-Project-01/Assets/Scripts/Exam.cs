@@ -1,26 +1,40 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Exam : MonoBehaviour
 {
     private static QuestionBank questionBank = new QuestionBank();
-    public (Question, int[])[] examQuestions { get; private set; } = { };
+    public static (Question, int[])[] examQuestions { get; private set; } = { };
+    public static bool examGenerated = false;                                  // Change this value on start scene
+    public static float grade { get; private set; } = 0.0f;
+    static bool wasCaughtCheating = false;
+
+    public GameObject cheatSheetCanvas { get; private set; } = null;
+    public GameObject cheatSheet { get; private set; } = null;
 
     [SerializeField] uint questionCount = 5;
     [SerializeField] bool capQuestionCount = false;
 
-    public float grade { get; private set; } = 0.0f;
+    [SerializeField] GameObject multipleChoicePrefab = null;
+    [SerializeField] GameObject multipleSelectPrefab = null;
+    [SerializeField] GameObject trueFalsePrefab = null;
+
+    [SerializeField] Sprite cheatSheetBackground = null;
+
+
 
     private static (char, float)[] gradingSystem = new (char, float)[]     // Letter Grade and their minimum point value
     {
-        ('A', 0.9f),
-        ('B', 0.8f),
-        ('F', 0.0f)        
+        ('A', 1.0f),    // Perfect Score
+        ('B', 0.8f),    // 5/6 = 0.83
+        ('C', 0.6f),    // 4/6 = 0.66
+        ('F', 0.0f)
     };
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         GenerateExam();
     }
@@ -39,10 +53,15 @@ public class Exam : MonoBehaviour
      *    Takes: NONE
      * Modifies: questions
      *  Returns: NONE
-     *  Expects: NONE
+     *  Expects: Question Prefabs != null
      */
     private void GenerateExam()
     {
+        if (examGenerated)
+        {
+            return;
+        }
+
         if (capQuestionCount)
         {
             int questionBankSize = questionBank.Questions.Length;
@@ -59,12 +78,15 @@ public class Exam : MonoBehaviour
         {
             examQuestions = new (Question, int[])[questionCount];
         }
-        
+
+        // Destroy all pre-existing children
+        foreach (Transform child in this.gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
 
         int displayedQuestionCount = 0;
-
         int numQuestionsInBank = questionBank.Questions.Length;
-
         while (displayedQuestionCount < examQuestions.Length)
         {
             if (displayedQuestionCount % numQuestionsInBank == 0)
@@ -77,18 +99,106 @@ public class Exam : MonoBehaviour
                 question.QuestionType == QType.MultipleSelect ? new int[question.answers.Length] : new int[] { -1 });
 
             Question lastExamQuestion = examQuestions[displayedQuestionCount].Item1;
+            QType questionType = lastExamQuestion.QuestionType;
+
             Debug.Log("Q: " + lastExamQuestion.question);
+
+            GameObject qPrefab = null;
+
+            if (questionType == QType.MultipleChoice)
+            {
+                qPrefab = Object.Instantiate(multipleChoicePrefab, this.gameObject.transform);
+            }
+            else if (questionType == QType.MultipleSelect)
+            {
+                qPrefab = Object.Instantiate(multipleSelectPrefab, this.gameObject.transform);
+            }
+            else
+            {
+                qPrefab = Object.Instantiate(trueFalsePrefab, this.gameObject.transform);
+            }
+
+            // Set Question Variables
+            qPrefab.GetComponentInChildren<Text>().text = question.question;
+            QuestionUI qUI = qPrefab.GetComponent<QuestionUI>();
+            //qUI.exam = this;
+            qUI.questionID = displayedQuestionCount;
+
+            Text[] qanswers = qPrefab.transform.Find("Answers").transform.GetComponentsInChildren<Text>();
+
             // Create Question prefab
             for (int i = 0; i < lastExamQuestion.answers.Length; i++)
             {
                 (string, bool) answer = lastExamQuestion.answers[i];
-                char option = (char)('a' + i);
-                Debug.Log("\t" + option + ". " + answer.Item1 + "   (" + (answer.Item2 ? "O" : "X") + ")");
+                char option = (char)('A' + i);
+                string aText = option + ". " + answer.Item1;
+                Debug.Log("\t" + aText + "   (" + (answer.Item2 ? "O" : "X") + ")");
+
                 // Update the answer for the question prefab
+                qanswers[i].text = aText;
             }
 
             displayedQuestionCount++;
         }
+
+        examGenerated = true;
+
+        wasCaughtCheating = false;
+
+        // Make Cheat Sheet
+        GenerateCheatSheet();
+    }
+
+    /* Create Cheat Sheet Canvas by copying Exam Canvas.
+     * Sets answers in Cheat Sheet.
+     * 
+     *    Takes: NONE
+     * Modifies: cheatSheetCanvas
+     *  Returns: NONE
+     *  Expects: # of questions = # of questions in UI
+     */
+    public void GenerateCheatSheet()
+    {
+        // Create copy of Exam Canvas
+        cheatSheetCanvas = Object.Instantiate(this.gameObject.transform.parent).gameObject;
+
+        // Get Exam Object (cheat sheet)
+        cheatSheet = cheatSheetCanvas.transform.Find("Exam").gameObject;
+        cheatSheet.GetComponent<Image>().sprite = cheatSheetBackground;
+
+        QuestionUI[] questions = cheatSheet.transform.GetComponentsInChildren<QuestionUI>();
+        for (int i = 0; i < examQuestions.Length; i++)
+        {
+            Destroy(questions[i].gameObject);
+        }
+
+        for (int i = 0; i < examQuestions.Length; i++)
+        {
+            Question q = examQuestions[i].Item1;
+
+            Toggle[] qanswers = questions[i + examQuestions.Length].gameObject.transform.Find("Answers").transform.GetComponentsInChildren<Toggle>();
+
+            for (int j = 0; j < qanswers.Length; j++)
+            {
+                // Remove AnswerUI from toggle to not trigger AnswerQuestion()
+                Toggle qanswer = qanswers[j];
+                Destroy(qanswer.gameObject.GetComponent<AnswerUI>());
+
+                if (q.answers[j].Item2)
+                {
+                    qanswer.isOn = true;
+                }
+            }
+        }
+
+        // Set the position of the cheat sheet
+        Vector3 pos = this.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
+        cheatSheet.gameObject.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x - 10, pos.y - 10, pos.z);
+
+        // Change interactability and layer of canvas
+        cheatSheetCanvas.GetComponent<CanvasGroup>().interactable = false;
+        //cheatSheetCanvas.GetComponent<Canvas>().sortingLayerName = "Hidden";
+        cheatSheetCanvas.GetComponent<Canvas>().sortingOrder = 0;
     }
 
     /* Given a question number, sets answer to the given answer number.
@@ -100,7 +210,7 @@ public class Exam : MonoBehaviour
      *  Returns: NONE
      *  Expects: Question and Answer should be valid. Error returned if not.
      */
-    public void AnswerQuestion(int _questionNumber, int _answer)
+    public static void AnswerQuestion(int _questionNumber, int _answer)
     {
         if (examQuestions.Length <= _questionNumber)
         {
@@ -118,7 +228,15 @@ public class Exam : MonoBehaviour
         else if ((q.Item1.QuestionType == QType.MultipleChoice || q.Item1.QuestionType == QType.TrueFalse) && 
             _answer < q.Item1.answers.Length)
         {
-            q.Item2[0] = _answer;
+            if (q.Item2[0] == _answer)
+            {
+
+                q.Item2[0] = -1;
+            }
+            else
+            {
+                q.Item2[0] = _answer;
+            }
         }
         else
         {
@@ -128,6 +246,20 @@ public class Exam : MonoBehaviour
         Debug.Log("Answered Question " + _questionNumber + " with " + _answer);
     }
 
+    /* Player was caught cheating on exam.
+     * Will result in automatic 0 on grading.
+     * 
+     *    Takes: NONE
+     * Modifies: wasCaughtCheating
+     *  Returns: NONE
+     *  Expects: NONE
+     */
+    public void GetCaughtCheating()
+    {
+        wasCaughtCheating = true;
+        // Change scene?
+    }
+
     /* Grades the exam.
      * 
      *    Takes: NONE
@@ -135,9 +267,14 @@ public class Exam : MonoBehaviour
      *  Returns: NONE
      *  Expects: NONE
      */
-    public float Grade()
+    public static float Grade()
     {
         grade = 0.0f;
+
+        if (wasCaughtCheating)
+        {
+            return grade;
+        }
 
         for(int i = 0; i < examQuestions.Length; i++)
         {
@@ -180,7 +317,7 @@ public class Exam : MonoBehaviour
      *  Returns: char
      *  Expects: NONE
      */
-    public char GetLetterGrade()
+    public static char GetLetterGrade()
     {
         return GetLetterGrade(grade);
     }
@@ -192,7 +329,7 @@ public class Exam : MonoBehaviour
      *  Returns: char
      *  Expects: NONE
      */
-    public char GetLetterGrade(float _grade)
+    public static char GetLetterGrade(float _grade)
     {
         for (int i = 0; i < gradingSystem.Length; i++)
         {
@@ -202,5 +339,17 @@ public class Exam : MonoBehaviour
             }
         }
         return '0';
+    }
+
+    public static void ResetExam()
+    {
+        examGenerated = false;
+        wasCaughtCheating = false;
+        grade = 0.0f;
+    }
+
+    public void FinalizeExam()
+    {
+        this.gameObject.GetComponentInParent<CanvasGroup>().interactable = false;
     }
 }
