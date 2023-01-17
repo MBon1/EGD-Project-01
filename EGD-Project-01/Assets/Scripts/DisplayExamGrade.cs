@@ -11,7 +11,7 @@ public class DisplayExamGrade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float grade = Exam.Grade();
+        float grade = Exam.grade;
         char lettreGrade = Exam.GetLetterGrade();
 
         if (grade == float.NaN)

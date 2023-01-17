@@ -36,6 +36,7 @@ public class Timer : MonoBehaviour
                 timerRunning = false;
                 timerUpdate(examTime);
                 exam.FinalizeExam();
+                Exam.Grade();
                 ChangeScene();
             }
         }
