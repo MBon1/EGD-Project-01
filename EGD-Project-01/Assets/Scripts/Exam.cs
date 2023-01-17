@@ -4,14 +4,14 @@ using UnityEngine;
 public class Exam : MonoBehaviour
 {
     private static QuestionBank questionBank = new QuestionBank();
-    private (Question, int[])[] examQuestions;
+    public (Question, int[])[] examQuestions { get; private set; } = { };
 
     [SerializeField] uint questionCount = 5;
     [SerializeField] bool capQuestionCount = false;
 
     public float grade { get; private set; } = 0.0f;
 
-    private (char, float)[] gradingSystem = new (char, float)[]     // Letter Grade and their minimum point value
+    private static (char, float)[] gradingSystem = new (char, float)[]     // Letter Grade and their minimum point value
     {
         ('A', 0.9f),
         ('B', 0.8f),
@@ -20,7 +20,7 @@ public class Exam : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GenerateExam();
     }
@@ -78,12 +78,13 @@ public class Exam : MonoBehaviour
 
             Question lastExamQuestion = examQuestions[displayedQuestionCount].Item1;
             Debug.Log("Q: " + lastExamQuestion.question);
+            // Create Question prefab
             for (int i = 0; i < lastExamQuestion.answers.Length; i++)
             {
                 (string, bool) answer = lastExamQuestion.answers[i];
                 char option = (char)('a' + i);
                 Debug.Log("\t" + option + ". " + answer.Item1 + "   (" + (answer.Item2 ? "O" : "X") + ")");
-
+                // Update the answer for the question prefab
             }
 
             displayedQuestionCount++;
@@ -123,6 +124,8 @@ public class Exam : MonoBehaviour
         {
             Debug.LogError("ERROR: Answer given is invalid");
         }
+
+        Debug.Log("Answered Question " + _questionNumber + " with " + _answer);
     }
 
     /* Grades the exam.
