@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class Suspicion : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class Suspicion : MonoBehaviour
     AudioSource audioSource;
     [SerializeField] AudioClip audioNormal, audioSuspenseful;
     [SerializeField] Text timerText;
-    /*[SerializeField] VideoPlayer videoPlayer;
-    [SerializeField] */
+    [SerializeField] VideoPlayer videoPlayer;
+    [SerializeField] VideoClip videoNormal, videoSuspenseful;
     bool viewingCheatSheet = false;
     
 
@@ -41,6 +42,7 @@ public class Suspicion : MonoBehaviour
             // Change Timer Color
             ChangeTimeTextColor();
             // Change video
+            ChangeVideo(videoSuspenseful, new Color(1, 160.0f / 255.0f, 160.0f / 255.0f, 1));
         }
 
         if (Input.GetKeyUp(KeyCode.Tab))
@@ -50,6 +52,7 @@ public class Suspicion : MonoBehaviour
             Time.timeScale = 1;
             ChangeAudioClip(audioNormal);
             ChangeTimeTextColor();
+            ChangeVideo(videoNormal, Color.white);
         }
 
     }
@@ -72,5 +75,15 @@ public class Suspicion : MonoBehaviour
         {
             timerText.color = Color.black;
         }
+    }
+
+    private void ChangeVideo(VideoClip clip, Color color)
+    {
+        double videoTime = videoPlayer.time;
+        videoPlayer.clip = clip;
+        videoPlayer.Play();
+        videoPlayer.time = videoTime;
+
+        videoPlayer.gameObject.transform.GetComponentInChildren<RawImage>().color = color;
     }
 }
