@@ -43,12 +43,39 @@ public class QuestionBank
             ("Ambush Predators", true),
         }),
 
+        new Question(QType.MultipleChoice, "The majority of marine life is found in the: ", new (string, bool)[] {
+            ("Epipelagic Zone", true),
+            ("Mesopelagic Zone", false),
+            ("Bathypelagic Zone", false),
+            ("Hadal Zone", false),
+        }),
+
+        new Question(QType.MultipleChoice, "Which is a member of the order Hexanchiform?", new (string, bool)[] {
+            ("Frilled Shark", true),
+            ("Tiger Shark", false),
+            ("Bottlenose Dolphin", false),
+            ("Blue-ringed Octopus", false),
+        }),
+
+        new Question(QType.MultipleChoice, "Define anguilliform: ", new (string, bool)[] {
+            ("Eel-like", true),
+            ("Snake-like", false),
+            ("Fish-like", false),
+            ("Angular", false),
+        }),
+
         // True-False
         new Question("T/F: The scientific name for the \"comb jelly\" phylum is \"Cnidaria\".", false),
 
         new Question("T/F: Ammonites were alive during the Devonian Period (420-359 MYA).", true),
 
         new Question("T/F: Eurypterids are commonly thought to be the ancestors to horseshoe crabs.", false),
+
+        new Question("T/F: 500 atm is a potential pressure reading in the abyssal zone.", true),
+
+        new Question("T/F: Temperatures around hydrothermal vents reach as high as 450°C.", false),
+
+        new Question("T/F: The average depth of the ocean is around 3700m.", true),
 
         // Multiple Select
         new Question(QType.MultipleSelect, "Which of these are not examples of lobe-finned fish?", new (string, bool)[] {
@@ -70,6 +97,27 @@ public class QuestionBank
             ("Pencil Squid", true),
             ("Spirulida", true),
             ("Nautilus", false),
+        }),
+
+        new Question(QType.MultipleSelect, "Select all that are venomous: ", new (string, bool)[] {
+            ("Lionfish", true),
+            ("Stingray", true),
+            ("Box Jellyfish", true),
+            ("Barracuda", false),
+        }),
+
+        new Question(QType.MultipleSelect, "The following are Mid-Ocean ridges: ", new (string, bool)[] {
+            ("Traveller Ridge", false),
+            ("Mid-Atlantic Ridge", true),
+            ("Peru Rise", false),
+            ("East Pacific Rise", true),
+        }),
+
+        new Question(QType.MultipleSelect, "Crabs are: ", new (string, bool)[] {
+            ("Vertebrates", false),
+            ("Decapods", true),
+            ("Arachnids", false),
+            ("Crustaceans", true),
         }),
     };
 
