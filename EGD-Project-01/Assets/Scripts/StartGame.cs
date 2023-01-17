@@ -11,7 +11,7 @@ public class StartGame : MonoBehaviour
     public void LoadLevel()
     {
         if (ResetExam)
-            Exam.examGenerated = false;
+            Exam.ResetExam();
 
         SceneManager.LoadScene(LevelName);
     }

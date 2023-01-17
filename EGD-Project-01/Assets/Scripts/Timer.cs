@@ -9,6 +9,7 @@ public class Timer : MonoBehaviour
     public float examTime = 10;
     public bool timerRunning = false;
     public Text timerDisplay;
+    public Exam exam;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class Timer : MonoBehaviour
                 examTime = 0;
                 timerRunning = false;
                 timerUpdate(examTime);
+                exam.FinalizeExam();
                 ChangeScene();
             }
         }

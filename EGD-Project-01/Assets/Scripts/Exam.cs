@@ -5,8 +5,9 @@ using UnityEngine.UI;
 public class Exam : MonoBehaviour
 {
     private static QuestionBank questionBank = new QuestionBank();
-    public (Question, int[])[] examQuestions { get; private set; } = { };
+    public static (Question, int[])[] examQuestions { get; private set; } = { };
     public static bool examGenerated = false;                                  // Change this value on start scene
+    public static float grade { get; private set; } = 0.0f;
     static bool wasCaughtCheating = false;
 
     public GameObject cheatSheetCanvas { get; private set; } = null;
@@ -19,13 +20,13 @@ public class Exam : MonoBehaviour
     [SerializeField] GameObject trueFalsePrefab = null;
 
 
-    public float grade { get; private set; } = 0.0f;
 
     private static (char, float)[] gradingSystem = new (char, float)[]     // Letter Grade and their minimum point value
     {
-        ('A', 0.8f),
-        ('B', 0.5f),
-        ('F', 0.0f)        
+        ('A', 1.0f),    // Perfect Score
+        ('B', 0.8f),    // 5/6 = 0.83
+        ('C', 0.6f),    // 4/6 = 0.66
+        ('F', 0.0f)
     };
 
 
@@ -117,7 +118,7 @@ public class Exam : MonoBehaviour
             // Set Question Variables
             qPrefab.GetComponentInChildren<Text>().text = question.question;
             QuestionUI qUI = qPrefab.GetComponent<QuestionUI>();
-            qUI.exam = this;
+            //qUI.exam = this;
             qUI.questionID = displayedQuestionCount;
 
             Text[] qanswers = qPrefab.transform.Find("Answers").transform.GetComponentsInChildren<Text>();
@@ -204,7 +205,7 @@ public class Exam : MonoBehaviour
      *  Returns: NONE
      *  Expects: Question and Answer should be valid. Error returned if not.
      */
-    public void AnswerQuestion(int _questionNumber, int _answer)
+    public static void AnswerQuestion(int _questionNumber, int _answer)
     {
         if (examQuestions.Length <= _questionNumber)
         {
@@ -222,7 +223,15 @@ public class Exam : MonoBehaviour
         else if ((q.Item1.QuestionType == QType.MultipleChoice || q.Item1.QuestionType == QType.TrueFalse) && 
             _answer < q.Item1.answers.Length)
         {
-            q.Item2[0] = _answer;
+            if (q.Item2[0] == _answer)
+            {
+
+                q.Item2[0] = -1;
+            }
+            else
+            {
+                q.Item2[0] = _answer;
+            }
         }
         else
         {
@@ -253,7 +262,7 @@ public class Exam : MonoBehaviour
      *  Returns: NONE
      *  Expects: NONE
      */
-    public float Grade()
+    public static float Grade()
     {
         grade = 0.0f;
 
@@ -303,7 +312,7 @@ public class Exam : MonoBehaviour
      *  Returns: char
      *  Expects: NONE
      */
-    public char GetLetterGrade()
+    public static char GetLetterGrade()
     {
         return GetLetterGrade(grade);
     }
@@ -315,7 +324,7 @@ public class Exam : MonoBehaviour
      *  Returns: char
      *  Expects: NONE
      */
-    public char GetLetterGrade(float _grade)
+    public static char GetLetterGrade(float _grade)
     {
         for (int i = 0; i < gradingSystem.Length; i++)
         {
@@ -325,5 +334,17 @@ public class Exam : MonoBehaviour
             }
         }
         return '0';
+    }
+
+    public static void ResetExam()
+    {
+        examGenerated = false;
+        wasCaughtCheating = false;
+        grade = 0.0f;
+    }
+
+    public void FinalizeExam()
+    {
+        this.gameObject.GetComponentInParent<CanvasGroup>().interactable = false;
     }
 }

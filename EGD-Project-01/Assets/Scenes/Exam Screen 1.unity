@@ -738,6 +738,7 @@ MonoBehaviour:
   examTime: 10
   timerRunning: 0
   timerDisplay: {fileID: 774208809}
+  exam: {fileID: 321143319}
 --- !u!114 &644857768
 MonoBehaviour:
   m_ObjectHideFlags: 0
