@@ -193,7 +193,7 @@ public class Exam : MonoBehaviour
 
         // Set the position of the cheat sheet
         Vector3 pos = this.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
-        cheatSheet.gameObject.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x - 10, pos.y - 10, pos.z);
+        cheatSheet.gameObject.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x - 5, pos.y - 2.5f, pos.z);
 
         // Change interactability and layer of canvas
         cheatSheetCanvas.GetComponent<CanvasGroup>().interactable = false;
@@ -352,4 +352,19 @@ public class Exam : MonoBehaviour
     {
         this.gameObject.GetComponentInParent<CanvasGroup>().interactable = false;
     }
+
+    public void TabCheatSheet()
+    {
+        Canvas canvas = cheatSheetCanvas.GetComponent<Canvas>();
+        if(canvas.sortingOrder == 0)
+        {
+            // View Cheat Sheet
+            canvas.sortingOrder = 1;
+        }
+        else
+        {
+            // Hide Cheat Sheet
+            canvas.sortingOrder = 0;
+        }
+    }   
 }
