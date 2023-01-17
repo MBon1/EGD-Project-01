@@ -6,6 +6,9 @@ public class Exam : MonoBehaviour
 {
     private static QuestionBank questionBank = new QuestionBank();
     public (Question, int[])[] examQuestions { get; private set; } = { };
+    static bool examGenerated = false;
+
+    public GameObject cheatSheetCanvas { get; private set; } = null;
 
     [SerializeField] uint questionCount = 5;
     [SerializeField] bool capQuestionCount = false;
@@ -13,6 +16,7 @@ public class Exam : MonoBehaviour
     [SerializeField] GameObject multipleChoicePrefab = null;
     [SerializeField] GameObject multipleSelectPrefab = null;
     [SerializeField] GameObject trueFalsePrefab = null;
+
 
     public float grade { get; private set; } = 0.0f;
 
@@ -25,9 +29,12 @@ public class Exam : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        GenerateExam();
+        if (!examGenerated)
+        {
+            GenerateExam();
+        }
     }
 
     /* Randomizes the order of exam questions. 
@@ -44,7 +51,7 @@ public class Exam : MonoBehaviour
      *    Takes: NONE
      * Modifies: questions
      *  Returns: NONE
-     *  Expects: NONE
+     *  Expects: Question Prefabs != null
      */
     private void GenerateExam()
     {
@@ -121,14 +128,66 @@ public class Exam : MonoBehaviour
                 Debug.Log("\t" + aText + "   (" + (answer.Item2 ? "O" : "X") + ")");
 
                 // Update the answer for the question prefab
-                //qanswers[i].GetComponentInChildren<Text>().text = aText;
                 qanswers[i].text = aText;
             }
 
             displayedQuestionCount++;
         }
 
+        examGenerated = true;
+
         // Make Cheat Sheet
+        GenerateCheatSheet();
+    }
+
+    /* Create Cheat Sheet Canvas by copying Exam Canvas.
+     * Sets answers in Cheat Sheet.
+     * 
+     *    Takes: NONE
+     * Modifies: cheatSheetCanvas
+     *  Returns: NONE
+     *  Expects: # of questions = # of questions in UI
+     */
+    public void GenerateCheatSheet()
+    {
+        // Create copy of Exam Canvas
+        cheatSheetCanvas = Object.Instantiate(this.gameObject.transform.parent).gameObject;
+
+        // Get Exam Object (cheat sheet)
+        GameObject cheatSheet = cheatSheetCanvas.transform.Find("Exam").gameObject;
+
+        QuestionUI[] questions = cheatSheet.transform.GetComponentsInChildren<QuestionUI>();
+        for (int i = 0; i < examQuestions.Length; i++)
+        {
+            Destroy(questions[i].gameObject);
+        }
+
+        for (int i = 0; i < examQuestions.Length; i++)
+        {
+            Question q = examQuestions[i].Item1;
+
+            Toggle[] qanswers = questions[i + examQuestions.Length].gameObject.transform.Find("Answers").transform.GetComponentsInChildren<Toggle>();
+
+            for (int j = 0; j < qanswers.Length; j++)
+            {
+                // Remove AnswerUI from toggle to not trigger AnswerQuestion()
+                Toggle qanswer = qanswers[j];
+                Destroy(qanswer.gameObject.GetComponent<AnswerUI>());
+
+                if (q.answers[j].Item2)
+                {
+                    qanswer.isOn = true;
+                }
+            }
+        }
+
+        // Set the position of the cheat sheet
+        Vector3 pos = this.gameObject.GetComponent<RectTransform>().anchoredPosition3D;
+        cheatSheet.gameObject.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(pos.x - 15, pos.y - 25, pos.z);
+
+        // Change interactability and layer of canvas
+        cheatSheetCanvas.GetComponent<CanvasGroup>().interactable = false;
+        cheatSheetCanvas.GetComponent<Canvas>().sortingLayerName = "Hidden";
     }
 
     /* Given a question number, sets answer to the given answer number.
