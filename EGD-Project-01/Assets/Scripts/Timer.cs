@@ -53,4 +53,9 @@ public class Timer : MonoBehaviour
     {
         this.gameObject.GetComponent<StartGame>().LoadLevel();
     }
+
+    public void InteruptTimer()
+    {
+        timerRunning = false;
+    }
 }
