@@ -144,7 +144,7 @@ public class NewSuspicion : MonoBehaviour
             return;
         double videoTime = videoPlayer.time;
         videoPlayer.clip = clip;
-        videoPlayer.Play();
+        //videoPlayer.Play();
         videoPlayer.time = videoTime;
     }
 
