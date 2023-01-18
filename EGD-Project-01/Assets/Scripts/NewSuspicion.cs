@@ -96,7 +96,7 @@ public class NewSuspicion : MonoBehaviour
             ChangeVideo(videoClips[3]);
             videoPlayer.frame = 0;
             videoPlayer.loopPointReached += EndReached;
-            videoPlayer.Play();
+            //videoPlayer.Play();
 
         }
         else if (suspicion >= alertSuspicionLevel)
@@ -144,7 +144,7 @@ public class NewSuspicion : MonoBehaviour
             return;
         double videoTime = videoPlayer.time;
         videoPlayer.clip = clip;
-        //videoPlayer.Play();
+        videoPlayer.Play();
         videoPlayer.time = videoTime;
     }
 

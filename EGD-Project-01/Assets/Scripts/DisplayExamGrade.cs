@@ -18,7 +18,7 @@ public class DisplayExamGrade : MonoBehaviour
         {
             grade = 0f;
         }
-        scoreText.text = "SCORE: " + grade.ToString("0.00");
+        scoreText.text = "SCORE: " + (grade * 100).ToString("0.##\\%"); ;
         gradeText.text = "FINAL GRADE: " + lettreGrade;
     }
 
